@@ -1,10 +1,25 @@
 package checker_test
 
+func sliceArrayMultipleTimes() {
+	var xs [3]int
+
+	/// could simplify xs[:][:] to xs[:]
+	_ = xs[:][:]
+	/// could simplify xs[:][:][:] to xs[:]
+	_ = xs[:][:][:]
+}
+
 func dullStringSlicing() {
 	var s string
 
 	/// could simplify s[:] to s
 	_ = s[:]
+
+	/// could simplify s[:][:] to s
+	_ = s[:][:]
+
+	/// could simplify s[:][:][:] to s
+	_ = s[:][:][:]
 }
 
 func dullSlicing() {

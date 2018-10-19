@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-lintpack/lintpack"
 	"github.com/go-lintpack/lintpack/astwalk"
+	"github.com/go-toolsmith/astequal"
 )
 
 func init() {
@@ -29,20 +30,28 @@ type unsliceChecker struct {
 }
 
 func (c *unsliceChecker) VisitExpr(expr ast.Expr) {
-	if expr, ok := expr.(*ast.SliceExpr); ok {
-		// No need to worry about 3-index slicing,
-		// because it's only permitted if expr.High is not nil.
-		if expr.Low != nil || expr.High != nil {
-			return
-		}
-		switch c.ctx.TypesInfo.TypeOf(expr.X).(type) {
-		case *types.Slice, *types.Basic:
-			// Basic kind catches strings, Slice cathes everything else.
-			c.warn(expr)
-		}
+	unsliced := c.unslice(expr)
+	if !astequal.Expr(expr, unsliced) {
+		c.warn(expr, unsliced)
+		c.SkipChilds = true
 	}
 }
 
-func (c *unsliceChecker) warn(expr *ast.SliceExpr) {
-	c.ctx.Warn(expr, "could simplify %s to %s", expr, expr.X)
+func (c *unsliceChecker) unslice(expr ast.Expr) ast.Expr {
+	slice, ok := expr.(*ast.SliceExpr)
+	if !ok || slice.Low != nil || slice.High != nil {
+		// No need to worry about 3-index slicing,
+		// because it's only permitted if expr.High is not nil.
+		return expr
+	}
+	switch c.ctx.TypesInfo.TypeOf(slice.X).(type) {
+	case *types.Slice, *types.Basic:
+		// Basic kind catches strings, Slice cathes everything else.
+		return c.unslice(slice.X)
+	}
+	return expr
+}
+
+func (c *unsliceChecker) warn(cause ast.Expr, unsliced ast.Expr) {
+	c.ctx.Warn(cause, "could simplify %s to %s", cause, unsliced)
 }

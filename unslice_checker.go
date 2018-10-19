@@ -12,6 +12,7 @@ import (
 func init() {
 	var info lintpack.CheckerInfo
 	info.Name = "unslice"
+	info.Tags = []string{"style"}
 	info.Summary = "Detects slice expressions that can be simplified to sliced expression itself"
 	info.Before = `
 f(s[:])               // s is string

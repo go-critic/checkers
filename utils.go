@@ -2,9 +2,26 @@ package checkers
 
 import (
 	"go/ast"
+	"go/types"
+	"strings"
 
+	"github.com/go-lintpack/lintpack"
 	"golang.org/x/tools/go/ast/astutil"
 )
+
+// isUnitTestFunc reports whether FuncDecl declares testing function.
+func isUnitTestFunc(ctx *lintpack.CheckerContext, fn *ast.FuncDecl) bool {
+	if !strings.HasPrefix(fn.Name.Name, "Test") {
+		return false
+	}
+	typ := ctx.TypesInfo.TypeOf(fn.Name)
+	if sig, ok := typ.(*types.Signature); ok {
+		return sig.Results().Len() == 0 &&
+			sig.Params().Len() == 1 &&
+			sig.Params().At(0).Type().String() == "*testing.T"
+	}
+	return false
+}
 
 // qualifiedName returns called expr fully-quallified name.
 //

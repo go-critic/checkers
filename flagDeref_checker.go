@@ -20,6 +20,7 @@ flag.BoolVar(&b, "b", false, "b docs")`
 	info.Note = `
 Dereferencing returned pointers will lead to hard to find errors
 where flag values are not updated after flag.Parse().`
+
 	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &flagDerefChecker{
 			ctx: ctx,

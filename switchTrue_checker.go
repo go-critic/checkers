@@ -20,6 +20,7 @@ case x > y:
 switch {
 case x > y:
 }`
+
 	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForStmt(&switchTrueChecker{ctx: ctx})
 	})

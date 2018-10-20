@@ -20,6 +20,7 @@ copy(b[:], values...) // b is []byte`
 	info.After = `
 f(s)
 copy(b, values...)`
+
 	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForExpr(&unsliceChecker{ctx: ctx})
 	})

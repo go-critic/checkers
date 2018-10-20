@@ -25,6 +25,7 @@ for _, x := range &xs { // No copy
 	// Loop body.
 }`
 	info.Note = "See Go issue for details: https://github.com/golang/go/issues/15812."
+
 	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &rangeExprCopyChecker{ctx: ctx}
 		c.sizeThreshold = int64(c.ctx.Params.Int("sizeThreshold", 512))

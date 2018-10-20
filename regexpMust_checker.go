@@ -17,6 +17,7 @@ func init() {
 	info.Summary = "Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`"
 	info.Before = `re, _ := regexp.Compile("const pattern")`
 	info.After = `re := regexp.MustCompile("const pattern")`
+
 	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForExpr(&regexpMustChecker{ctx: ctx})
 	})

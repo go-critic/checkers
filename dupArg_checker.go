@@ -15,6 +15,7 @@ func init() {
 	info.Summary = "Detects suspicious duplicated arguments"
 	info.Before = `copy(dst, dst)`
 	info.After = `copy(dst, src)`
+
 	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &dupArgChecker{ctx: ctx}
 		// newMatcherFunc returns a function that matches a call if

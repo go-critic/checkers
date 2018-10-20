@@ -24,6 +24,7 @@ for i := range xs {
 	x := &xs[i]
 	// Loop body.
 }`
+
 	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &rangeValCopyChecker{ctx: ctx}
 		c.sizeThreshold = int64(c.ctx.Params.Int("sizeThreshold", 128))

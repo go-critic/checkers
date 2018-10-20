@@ -2,6 +2,8 @@ package checkers
 
 import (
 	"go/ast"
+
+	"golang.org/x/tools/go/ast/astutil"
 )
 
 // qualifiedName returns called expr fully-quallified name.
@@ -23,4 +25,51 @@ func qualifiedName(x ast.Expr) string {
 	default:
 		return ""
 	}
+}
+
+// identOf returns identifier for x that can be used to obtain associated types.Object.
+// Returns nil for expressions that yield temporary results, like `f().field`.
+func identOf(x ast.Node) *ast.Ident {
+	switch x := x.(type) {
+	case *ast.Ident:
+		return x
+	case *ast.SelectorExpr:
+		return identOf(x.Sel)
+	case *ast.TypeAssertExpr:
+		// x.(type) - x may contain ident.
+		return identOf(x.X)
+	case *ast.IndexExpr:
+		// x[i] - x may contain ident.
+		return identOf(x.X)
+	case *ast.StarExpr:
+		// *x - x may contain ident.
+		return identOf(x.X)
+	case *ast.SliceExpr:
+		// x[:] - x may contain ident.
+		return identOf(x.X)
+
+	default:
+		// Note that this function is not comprehensive.
+		return nil
+	}
+}
+
+// findNode applies pred for root and all it's childs until it returns true.
+// Matched node is returned.
+// If none of the nodes matched predicate, nil is returned.
+func findNode(root ast.Node, pred func(ast.Node) bool) ast.Node {
+	var found ast.Node
+	astutil.Apply(root, nil, func(cur *astutil.Cursor) bool {
+		if pred(cur.Node()) {
+			found = cur.Node()
+			return false
+		}
+		return true
+	})
+	return found
+}
+
+// containsNode reports whether `findNode(root, pred)!=nil`.
+func containsNode(root ast.Node, pred func(ast.Node) bool) bool {
+	return findNode(root, pred) != nil
 }

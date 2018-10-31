@@ -12,7 +12,7 @@ import (
 func init() {
 	var info lintpack.CheckerInfo
 	info.Name = "indexAlloc"
-	info.Tags = []string{"perfomance"}
+	info.Tags = []string{"performance"}
 	info.Summary = "Detects strings.Index calls that may cause unwanted allocs"
 	info.Before = `strings.Index(string(x), y)`
 	info.After = `bytes.Index(x, []byte(y))`

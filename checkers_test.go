@@ -9,6 +9,33 @@ import (
 
 func TestCheckers(t *testing.T) { linttest.TestCheckers(t) }
 
+func TestTags(t *testing.T) {
+	// Verify that we're only using strict set of tags.
+	// This helps to avoid typos in tag names.
+	//
+	// Also check that exactly 1 category tag is used.
+
+	for _, info := range lintpack.GetCheckersInfo() {
+		categories := 0
+		for _, tag := range info.Tags {
+			switch tag {
+			case "diagnostic", "style", "performance":
+				// Category tags.
+				// Can only have one of them.
+				categories++
+			case "experimental", "opinionated":
+				// Optional tags.
+			default:
+				t.Errorf("%q checker uses unknown tag %q", info.Name, tag)
+			}
+		}
+		if categories != 1 {
+			t.Errorf("%q expected to have 1 category, found %d",
+				info.Name, categories)
+		}
+	}
+}
+
 func TestStableList(t *testing.T) {
 	// Verify that new checker is not added without "experimental"
 	// tag by accident. When stable checker is about to be added,

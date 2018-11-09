@@ -76,5 +76,5 @@ func (c *sloppyReassignChecker) VisitStmt(stmt ast.Stmt) {
 func (c *sloppyReassignChecker) warnAssignToDefine(assign *ast.AssignStmt, name string) {
 	suggest := astcopy.AssignStmt(assign)
 	suggest.Tok = token.DEFINE
-	c.ctx.Warn(assign, "replace `%s` with `%s`", assign, suggest)
+	c.ctx.Warn(assign, "re-assignment to %s can be replaced with `%s`", name, suggest)
 }

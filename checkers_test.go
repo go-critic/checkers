@@ -41,16 +41,19 @@ func TestStableList(t *testing.T) {
 	// tag by accident. When stable checker is about to be added,
 	// slice above should be modified to include new checker name.
 
+	// It is a good practice to keep this list sorted.
 	stableList := []string{
 		"appendAssign",
 		"appendCombine",
 		"assignOp",
 		"caseOrder",
+		"defaultCaseOrder",
 		"dupArg",
 		"dupBranchBody",
 		"dupCase",
 		"flagDeref",
 		"ifElseChain",
+		"indexAlloc",
 		"rangeExprCopy",
 		"rangeValCopy",
 		"regexpMust",

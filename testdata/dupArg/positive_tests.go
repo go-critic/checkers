@@ -47,6 +47,10 @@ func duplicatedArgs() {
 	_ = strings.SplitAfterN(s, s, 2)
 	/// suspicious duplicated args in `strings.SplitN(s, s, 2)`
 	_ = strings.SplitN(s, s, 2)
+	/// suspicious duplicated args in `strings.Replace("", s, s, 1)`
+	_ = strings.Replace("", s, s, 1)
+	/// suspicious duplicated args in `strings.Replace("", "a", "a", 1)`
+	_ = strings.Replace("", "a", "a", 1)
 
 	/// suspicious duplicated args in `bytes.Contains(b, b)`
 	_ = bytes.Contains(b, b)
@@ -70,6 +74,10 @@ func duplicatedArgs() {
 	_ = bytes.SplitAfterN(b, b, 2)
 	/// suspicious duplicated args in `bytes.SplitN(b, b, 2)`
 	_ = bytes.SplitN(b, b, 2)
+	/// suspicious duplicated args in `bytes.Replace(nil, b, b, 1)`
+	_ = bytes.Replace(nil, b, b, 1)
+	/// suspicious duplicated args in `bytes.Replace(nil, []byte("a"), []byte("a"), 1)`
+	_ = bytes.Replace(nil, []byte("a"), []byte("a"), 1)
 
 	/// suspicious duplicated args in `types.Identical(typ, typ)`
 	_ = types.Identical(typ, typ)

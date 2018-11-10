@@ -33,6 +33,8 @@ func differentArgs() {
 	_ = strings.SplitAfter(s, s2)
 	_ = strings.SplitAfterN(s, s2, 2)
 	_ = strings.SplitN(s, s2, 2)
+	_ = strings.Replace("", s, s2, 1)
+	_ = strings.Replace("", "a", "b", 1)
 
 	_ = bytes.Contains(b, b2)
 	_ = bytes.Compare(b, b2)
@@ -45,6 +47,8 @@ func differentArgs() {
 	_ = bytes.SplitAfter(b, b2)
 	_ = bytes.SplitAfterN(b, b2, 2)
 	_ = bytes.SplitN(b, b2, 2)
+	_ = bytes.Replace(nil, b, b2, 1)
+	_ = bytes.Replace(nil, []byte("a"), []byte("b"), 1)
 
 	_ = types.Identical(typ, typ2)
 	_ = types.IdenticalIgnoreTags(typ, typ2)

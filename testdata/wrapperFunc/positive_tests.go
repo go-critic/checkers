@@ -29,6 +29,6 @@ func f(s string, b []byte) {
 	/// use bytes.ReplaceAll method in `bytes.Replace(b, b, b, -1)`
 	bytes.Replace(b, b, b, -1)
 
-	/// use NotFoundHandler method in `http.HandlerFunc(http.NotFound)`
+	/// use http.NotFoundHandler method in `http.HandlerFunc(http.NotFound)`
 	_ = http.HandlerFunc(http.NotFound)
 }

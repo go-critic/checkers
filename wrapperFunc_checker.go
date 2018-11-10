@@ -42,7 +42,7 @@ func init() {
 		}
 
 		pkgPatterns := map[string][]arg{
-			"http.HandlerFunc => NotFoundHandler": {
+			"http.HandlerFunc => http.NotFoundHandler": {
 				{0, "http.NotFound"},
 			},
 

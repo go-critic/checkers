@@ -64,6 +64,8 @@ func TestStableList(t *testing.T) {
 		"underef",
 		"unlambda",
 		"unslice",
+		"dupSubExpr",
+		"hugeParam",
 	}
 
 	m := make(map[string]bool)

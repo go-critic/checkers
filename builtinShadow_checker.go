@@ -15,7 +15,7 @@ func init() {
 	info.Before = `len := 10`
 	info.After = `length := 10`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		builtins := map[string]bool{
 			// Types
 			"bool":       true,

@@ -16,7 +16,7 @@ func init() {
 	info.Before = `func foo(a, b int, c, d int, e, f int, g int) {}`
 	info.After = `func foo(a, b, c, d, e, f, g int) {}`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForFuncDecl(&paramTypeCombineChecker{ctx: ctx})
 	})
 }

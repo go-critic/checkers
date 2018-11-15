@@ -24,7 +24,7 @@ func Foo() {}
 // Foo is a demonstration-only function.
 func Foo() {}`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &docStubChecker{ctx: ctx}
 		c.badCommentRE = regexp.MustCompile(`//\s?\w+([^a-zA-Z]+|( XXX.?))$`)
 		return astwalk.WalkerForFuncDecl(c)

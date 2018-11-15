@@ -21,7 +21,7 @@ func FuncOld() int`
 // Deprecated: use FuncNew instead
 func FuncOld() int`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &deprecatedCommentChecker{ctx: ctx}
 
 		c.commonPatterns = []*regexp.Regexp{

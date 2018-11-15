@@ -21,7 +21,7 @@ func init() {
 	info.Before = `func f(x [1024]int) {}`
 	info.After = `func f(x *[1024]int) {}`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForFuncDecl(&hugeParamChecker{
 			ctx:           ctx,
 			sizeThreshold: int64(info.Params.Int("sizeThreshold")),

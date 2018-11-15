@@ -19,7 +19,7 @@ func init() {
 	info.Before = `if err = f(); err != nil { return err }`
 	info.After = `if err := f(); err != nil { return err }`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForStmt(&sloppyReassignChecker{ctx: ctx})
 	})
 }

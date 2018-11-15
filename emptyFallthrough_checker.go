@@ -24,7 +24,7 @@ case reflect.Int, reflect.Int32:
 	return Int
 }`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForStmt(&emptyFallthroughChecker{ctx: ctx})
 	})
 }

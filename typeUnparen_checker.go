@@ -18,7 +18,7 @@ func init() {
 	info.Before = `type foo [](func([](func())))`
 	info.After = `type foo []func([]func())`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForTypeExpr(&typeUnparenChecker{ctx: ctx}, ctx.TypesInfo)
 	})
 }

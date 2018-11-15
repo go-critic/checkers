@@ -15,7 +15,7 @@ func init() {
 	info.Before = `func f(IN int, OUT *int) (ERR error) {}`
 	info.After = `func f(in int, out *int) (err error) {}`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &captLocalChecker{ctx: ctx}
 		c.checkLocals = c.ctx.Params.Bool("checkLocals", true)
 		return astwalk.WalkerForLocalDef(c, ctx.TypesInfo)

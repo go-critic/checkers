@@ -21,7 +21,7 @@ func init() {
 foo(1, 2)`
 	info.After = `foo(1, 2)`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		return astwalk.WalkerForLocalComment(&commentedOutCodeChecker{
 			ctx:              ctx,
 			notQuiteFuncCall: regexp.MustCompile(`\w+\s+\([^)]*\)\s*$`),

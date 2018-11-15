@@ -28,7 +28,7 @@ v := (*a)[5] // only if a is array`
 k.field = 5
 v := a[5]`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &underefChecker{ctx: ctx}
 		c.skipRecvDeref = ctx.Params.Bool("skipRecvDeref", true)
 		return astwalk.WalkerForExpr(c)

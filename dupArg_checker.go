@@ -16,7 +16,7 @@ func init() {
 	info.Before = `copy(dst, dst)`
 	info.After = `copy(dst, src)`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &dupArgChecker{ctx: ctx}
 		// newMatcherFunc returns a function that matches a call if
 		// args[xIndex] and args[yIndex] are equal.

@@ -35,7 +35,7 @@ for i := range xs {
 	// Loop body.
 }`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &rangeValCopyChecker{ctx: ctx}
 		c.sizeThreshold = int64(info.Params.Int("sizeThreshold"))
 		c.skipTestFuncs = info.Params.Bool("skipTestFuncs")

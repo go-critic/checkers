@@ -24,7 +24,7 @@ if cond1 {
 } else if x := cond2; x {
 }`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &elseifChecker{ctx: ctx}
 		c.skipBalanced = c.ctx.Params.Bool("skipBalanced", true)
 		return astwalk.WalkerForStmt(c)

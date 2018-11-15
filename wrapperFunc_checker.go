@@ -19,7 +19,7 @@ func init() {
 	info.Before = `wg.Add(-1)`
 	info.After = `wg.Done()`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		type arg struct {
 			index int
 			value string

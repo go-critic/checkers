@@ -24,7 +24,7 @@ sort.Slice(xs, func(i, j int) bool {
 	return xs[i].v < xs[j].v
 })`
 
-	lintpack.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &dupSubExprChecker{ctx: ctx}
 
 		ops := []struct {

@@ -9,6 +9,8 @@ import (
 
 func TestCheckers(t *testing.T) { linttest.TestCheckers(t) }
 
+func TestIntegration(t *testing.T) { linttest.TestIntegration(t) }
+
 func TestTags(t *testing.T) {
 	// Verify that we're only using strict set of tags.
 	// This helps to avoid typos in tag names.

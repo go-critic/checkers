@@ -7,7 +7,23 @@ import (
 	"github.com/go-lintpack/lintpack/linttest"
 )
 
-func TestCheckers(t *testing.T) { linttest.TestCheckers(t) }
+func TestCheckers(t *testing.T) {
+	allParams := map[string]map[string]interface{}{
+		"captLocal": {"paramsOnly": false},
+	}
+
+	for _, info := range lintpack.GetCheckersInfo() {
+		params := allParams[info.Name]
+		for key, p := range info.Params {
+			v, ok := params[key]
+			if ok {
+				p.Value = v
+			}
+		}
+	}
+
+	linttest.TestCheckers(t)
+}
 
 func TestIntegration(t *testing.T) { linttest.TestIntegration(t) }
 

@@ -12,6 +12,12 @@ func init() {
 	var info lintpack.CheckerInfo
 	info.Name = "elseif"
 	info.Tags = []string{"style"}
+	info.Params = lintpack.CheckerParams{
+		"skipBalanced": {
+			Value: true,
+			Usage: "whether to skip balanced if-else pairs",
+		},
+	}
 	info.Summary = "Detects else with nested if statement that can be replaced with else-if"
 	info.Before = `
 if cond1 {
@@ -26,7 +32,7 @@ if cond1 {
 
 	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &elseifChecker{ctx: ctx}
-		c.skipBalanced = c.ctx.Params.Bool("skipBalanced", true)
+		c.skipBalanced = info.Params.Bool("skipBalanced")
 		return astwalk.WalkerForStmt(c)
 	})
 }

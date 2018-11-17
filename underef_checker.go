@@ -30,7 +30,7 @@ v := a[5]`
 
 	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
 		c := &underefChecker{ctx: ctx}
-		c.skipRecvDeref = ctx.Params.Bool("skipRecvDeref", true)
+		c.skipRecvDeref = info.Params.Bool("skipRecvDeref")
 		return astwalk.WalkerForExpr(c)
 	})
 }

@@ -15,3 +15,9 @@ func pointersSwap1OK(x, y *int) {
 func pointersSwap2OK(x, y *int) {
 	*y, *x = *x, *y
 }
+
+func notSwap(x, y int) {
+	tmp := x
+	y = x // logic error here, probably...
+	y = tmp
+}

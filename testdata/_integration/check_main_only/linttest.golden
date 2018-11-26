@@ -25,6 +25,7 @@ exit status 1
 ./main.go:125:6: indexAlloc: consider replacing strings.Index(string(s), sub) with bytes.Index(s, []byte(sub))
 ./main.go:129:6: methodExprCall: consider to change `point.String` to `p.String`
 ./main.go:134:3: nilValReturn: returned expr is always nil; replace x with nil
+./main.go:233:9: offBy1: index expr always panics; maybe you wanted xs[len(xs)-1]?
 ./main.go:139:1: paramTypeCombine: func(x int, y int) could be replaced with func(x, y int)
 ./main.go:142:2: rangeExprCopy: copy of xs (8000 bytes) can be avoided with &xs
 ./main.go:148:2: rangeValCopy: each iteration copies 8000 bytes (consider pointers or indexing)

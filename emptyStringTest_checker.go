@@ -47,11 +47,12 @@ func (c *emptyStringTestChecker) VisitExpr(e ast.Expr) {
 	if zero.Value != "0" {
 		return
 	}
-	c.warn(cmp)
+	c.warn(cmp, s)
 }
 
-func (c *emptyStringTestChecker) warn(cmp *ast.BinaryExpr) {
+func (c *emptyStringTestChecker) warn(cmp *ast.BinaryExpr, s ast.Expr) {
 	suggest := astcopy.BinaryExpr(cmp)
+	suggest.X = s
 	suggest.Y = &ast.BasicLit{Value: `""`}
 	c.ctx.Warn(cmp, "replace `%s` with `%s`", cmp, suggest)
 }

@@ -5,7 +5,7 @@ func f() {
 	switch a {
 	case 5:
 		// ...
-	/// consider to make `default` case as first or as last case
+	/*! consider to make `default` case as first or as last case */
 	default:
 		// ...
 	case 42:

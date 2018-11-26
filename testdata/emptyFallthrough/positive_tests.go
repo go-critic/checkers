@@ -8,10 +8,10 @@ import (
 func warningsEmptyFallthrough(i int) bool {
 	switch i {
 	case 0:
-		/// replace empty case containing only fallthrough with expression list
+		/*! replace empty case containing only fallthrough with expression list */
 		fallthrough
 	case 1:
-		/// replace empty case containing only fallthrough with expression list
+		/*! replace empty case containing only fallthrough with expression list */
 		fallthrough
 	case 2:
 		return true
@@ -23,7 +23,7 @@ func warningsEmptyFallthrough(i int) bool {
 func warningsEmptyFallthrough2(kind reflect.Kind) reflect.Kind {
 	switch kind {
 	case reflect.Int:
-		/// replace empty case containing only fallthrough with expression list
+		/*! replace empty case containing only fallthrough with expression list */
 		fallthrough
 	case reflect.Int32:
 		return reflect.Int
@@ -36,10 +36,10 @@ func warningsEmptyFallthroughToDefault(i int) bool {
 	case 0:
 		return true
 	case 1:
-		/// remove empty case containing only fallthrough to default case
+		/*! remove empty case containing only fallthrough to default case */
 		fallthrough
 	case 2:
-		/// remove empty case containing only fallthrough to default case
+		/*! remove empty case containing only fallthrough to default case */
 		fallthrough
 	default:
 		return false
@@ -51,10 +51,10 @@ func warningsEmptyFallthroughToNonLastDefault(i int) bool {
 	case 0:
 		return true
 	case 1:
-		/// remove empty case containing only fallthrough to default case
+		/*! remove empty case containing only fallthrough to default case */
 		fallthrough
 	case 2:
-		/// remove empty case containing only fallthrough to default case
+		/*! remove empty case containing only fallthrough to default case */
 		fallthrough
 	default:
 		return false
@@ -66,12 +66,12 @@ func warningsEmptyFallthroughToNonLastDefault(i int) bool {
 func warningsNestedSwitchMixedFallthroughs(i, j int) bool {
 	switch i {
 	case 0:
-		/// replace empty case containing only fallthrough with expression list
+		/*! replace empty case containing only fallthrough with expression list */
 		fallthrough
 	case 1:
 		switch j {
 		case 0:
-			/// replace empty case containing only fallthrough with expression list
+			/*! replace empty case containing only fallthrough with expression list */
 			fallthrough
 		case 1:
 			fmt.Println("")
@@ -79,7 +79,7 @@ func warningsNestedSwitchMixedFallthroughs(i, j int) bool {
 		case 2:
 			return true
 		case 3:
-			/// remove empty case containing only fallthrough to default case
+			/*! remove empty case containing only fallthrough to default case */
 			fallthrough
 		default:
 			return false
@@ -87,7 +87,7 @@ func warningsNestedSwitchMixedFallthroughs(i, j int) bool {
 	case 2:
 		return true
 	case 3:
-		/// remove empty case containing only fallthrough to default case
+		/*! remove empty case containing only fallthrough to default case */
 		fallthrough
 	default:
 		return false

@@ -229,5 +229,9 @@ func (p point) String() string {
 	return fmt.Sprintf("(%d, %d)", p.x, p.y)
 }
 
+func offBy1(xs []int) int {
+	return xs[len(xs)]
+}
+
 func main() {
 }

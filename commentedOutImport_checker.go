@@ -25,9 +25,10 @@ import (
 )`
 
 	collection.AddChecker(&info, func(ctx *lintpack.CheckerContext) lintpack.FileWalker {
+		const pattern = `(?m)^(?://|/\*)?\s*"([a-zA-Z0-9_/]+)"\s*(?:\*/)?$`
 		return &commentedOutImportChecker{
 			ctx:            ctx,
-			importStringRE: regexp.MustCompile(`(?m)^(?://|/\*)?\s*"([a-zA-Z0-9_/]+)"\s*(?:\*/)?$`),
+			importStringRE: regexp.MustCompile(pattern),
 		}
 	})
 }

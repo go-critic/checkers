@@ -1,7 +1,8 @@
 package checker_test
 
 import (
-	"fmt"
+	/*! remove commented-out "log" import */
+	"errors" // "log"
 
 	/*! remove commented-out "fmt" import */
 	//"fmt"
@@ -23,4 +24,4 @@ import (
 	*/
 )
 
-var _ = fmt.Sprint
+var _ = errors.New

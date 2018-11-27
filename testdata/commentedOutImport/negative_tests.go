@@ -1,14 +1,14 @@
 package checker_test
 
 import (
-	"fmt"
+	"errors"
 )
 
 // Check that it doesn't try to check comments after the imports spec.
 
 var (
 	//"fmt"
-	_ = fmt.Sprint
+	_ = errors.New
 )
 
 // "fmt"

@@ -233,5 +233,9 @@ func offBy1(xs []int) int {
 	return xs[len(xs)]
 }
 
+func flagName() {
+	_ = flag.String(" foo ", "1", "")
+}
+
 func main() {
 }

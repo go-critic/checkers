@@ -18,6 +18,7 @@ exit status 1
 ./main.go:101:3: emptyFallthrough: replace empty case containing only fallthrough with expression list
 ./main.go:99:3: emptyFallthrough: replace empty case containing only fallthrough with expression list
 ./main.go:110:6: flagDeref: immediate deref in *flag.String("str", "", "usage") is most likely an error; consider using flag.StringVar
+./main.go:237:6: flagName: flag name " foo " contains whitespace
 ./main.go:113:16: hugeParam: x is heavy (80000 bytes); consider passing it by pointer
 ./main.go:141:20: hugeParam: xs is heavy (8000 bytes); consider passing it by pointer
 ./main.go:116:2: ifElseChain: rewrite if-else to switch statement

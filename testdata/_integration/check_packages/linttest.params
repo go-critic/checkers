@@ -1,2 +1,2 @@
-check -disableTags=none foo bar | linttest.golden
-check -disableTags=none bar foo | linttest.golden
+check -enableAll foo bar | linttest.golden
+check -enableAll bar foo | linttest.golden

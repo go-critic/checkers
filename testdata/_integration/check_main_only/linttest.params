@@ -1,2 +1,2 @@
-check -disableTags=none ./... | linttest.golden
-check -disableTags=none main.go | linttest.golden
+check -enableAll ./... | linttest.golden
+check -enableAll main.go | linttest.golden

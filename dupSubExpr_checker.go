@@ -8,6 +8,7 @@ import (
 	"github.com/go-lintpack/lintpack"
 	"github.com/go-lintpack/lintpack/astwalk"
 	"github.com/go-toolsmith/astequal"
+	"github.com/go-toolsmith/typep"
 )
 
 func init() {
@@ -86,7 +87,7 @@ func (c *dupSubExprChecker) checkBinaryExpr(expr *ast.BinaryExpr) {
 	if c.resultIsFloat(expr.X) && c.floatOpsSet[expr.Op] {
 		return
 	}
-	if isSafeExpr(c.ctx.TypesInfo, expr) && c.opSet[expr.Op] && astequal.Expr(expr.X, expr.Y) {
+	if typep.SideEffectFree(c.ctx.TypesInfo, expr) && c.opSet[expr.Op] && astequal.Expr(expr.X, expr.Y) {
 		c.warn(expr)
 	}
 }
